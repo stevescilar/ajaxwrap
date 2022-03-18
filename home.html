@@ -15,7 +15,28 @@
     //    Create an event listener
     document.getElementById('button').addEventListener('click' ,loadText);
     function loadText(){
-        console.log('button clicked');
+        // console.log('button clicked');
+        // create XHR Object
+        var  xhr = new XMLHttpRequest();
+        //OPEN - type,url/file, async
+        // console.log(vhr);
+        xhr.open('GET','sample.txt',true)
+
+        console.log('READYSTATE',xhr.readyState)
+
+        // xhr.onload = function(){
+        //     if(this.status == 200 ){
+        //         console.log(this.responseText);
+        //     }
+        // }
+        xhr.onreadystatechange = function(){
+            console.log('READYSTATE',xhr.readyState)
+            if(this.readyState == 4 && this.status == 200){
+                // console.log(this.responseText)
+            }
+        }
+        // sends request
+        xhr.send();
     }
    </script>
 </body>
