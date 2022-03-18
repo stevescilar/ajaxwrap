@@ -7,9 +7,11 @@
     <title>Ajax Tut</title>
 </head>
 <body>
-   <button id="button">
-       Get text file
-   </button>
+   <button id="button">Get text file</button>
+   <br><br>
+<div id="text">
+
+</div>
    <script>
 
     //    Create an event listener
@@ -20,21 +22,30 @@
         var  xhr = new XMLHttpRequest();
         //OPEN - type,url/file, async
         // console.log(vhr);
-        xhr.open('GET','sample.txt',true)
+        xhr.open('GET','sample.txt',true);
 
-        console.log('READYSTATE',xhr.readyState)
+        console.log('READYSTATE',xhr.readyState);
 
-        // xhr.onload = function(){
-        //     if(this.status == 200 ){
-        //         console.log(this.responseText);
-        //     }
+        //  for loaders
+        // xhr.onprogress = function(){
+        //     console.log('READYSTATE',xhr.readyState);
         // }
-        xhr.onreadystatechange = function(){
-            console.log('READYSTATE',xhr.readyState)
-            if(this.readyState == 4 && this.status == 200){
-                // console.log(this.responseText)
+        xhr.onload = function(){
+            if(this.status == 200 ){
+                // console.log(this.responseText);
+                document.getElementById('text').innerHTML = 
+                this.responseText;
             }
         }
+        xhr.onerror = function(){
+            console.log('Request  Error ');
+        }
+        // xhr.onreadystatechange = function(){
+        //     console.log('READYSTATE',xhr.readyState);
+        //     if(this.readyState == 4 && this.status == 200){
+        //         // console.log(this.responseText)
+        //     }
+        // }
         // sends request
         xhr.send();
     }
